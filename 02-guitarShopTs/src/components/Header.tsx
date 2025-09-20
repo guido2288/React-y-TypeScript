@@ -1,8 +1,16 @@
-import useCart from "../hooks/useCart"
+import type { CartItem, Guitar } from "../types"
 
+type HeaderProps = {
+    cart: CartItem[]
+    removeFromCart: (id: Guitar['id']) => void
+    increseQuantity: (id: Guitar['id']) => void
+    decreaseQuantity: (id: Guitar['id']) => void
+    clearCart: () => void
+    isEmpty: boolean
+    cartTotal: number
+}
 
-const Header = ({ cart , removeFromCart , increseQuantity , decreaseQuantity, clearCart, isEmpty, cartTotal }) => {
-    
+const Header = ({ cart, removeFromCart, increseQuantity, decreaseQuantity, clearCart, isEmpty, cartTotal }: HeaderProps) => {
 
     return (
         <header className="py-5 header">
@@ -55,7 +63,7 @@ const Header = ({ cart , removeFromCart , increseQuantity , decreaseQuantity, cl
                                                                     <button
                                                                         type="button"
                                                                         className="btn btn-dark"
-                                                                        onClick={ () => decreaseQuantity(guitar.id) }
+                                                                        onClick={() => decreaseQuantity(guitar.id)}
                                                                     >
                                                                         -
                                                                     </button>
@@ -63,7 +71,7 @@ const Header = ({ cart , removeFromCart , increseQuantity , decreaseQuantity, cl
                                                                     <button
                                                                         type="button"
                                                                         className="btn btn-dark"
-                                                                        onClick={() =>  increseQuantity(guitar.id)}
+                                                                        onClick={() => increseQuantity(guitar.id)}
                                                                     >
                                                                         +
                                                                     </button>
@@ -72,7 +80,7 @@ const Header = ({ cart , removeFromCart , increseQuantity , decreaseQuantity, cl
                                                                     <button
                                                                         className="btn btn-danger"
                                                                         type="button"
-                                                                        onClick={() =>  removeFromCart(guitar.id)}
+                                                                        onClick={() => removeFromCart(guitar.id)}
                                                                     >
                                                                         X
                                                                     </button>
@@ -86,10 +94,10 @@ const Header = ({ cart , removeFromCart , increseQuantity , decreaseQuantity, cl
                                             <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
                                         </>
                                 }
-                                <button 
+                                <button
                                     className="btn btn-dark w-100 mt-3 p-2"
                                     onClick={clearCart}
-                                    >Vaciar Carrito</button>
+                                >Vaciar Carrito</button>
                             </div>
                         </div>
                     </nav>
