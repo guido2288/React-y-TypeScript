@@ -11,14 +11,14 @@ function App() {
 
   return (
     <>
-      <header className="bg-teal-400 py-5">
-        <h1 className="text-center text-4xl font-black">Calculadora de Propinas y Consumo</h1>
+      <header className="bg-[#8E44AD] py-5">
+        <h1 className="text-center text-4xl font-black text-[#333333] font-[serif]">Calculadora de Propinas y Consumo</h1>
       </header>
 
       <main className="max-w-7xl mx-auto py-20 grid md:grid-cols-2">
 
         <div className="p-5">
-          <h2 className=" text-4xl font-black">Menu</h2>
+          <h2 className=" text-4xl font-black text-[#333333] font-[sans-serif] italic">Menu</h2>
 
           <div className="space-y-3 mt-10">
             {
@@ -34,7 +34,7 @@ function App() {
 
         </div>
 
-        <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
+        <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10 text-[#333333] font-[sans-serif]">
 
           {
             order.length > 0 ?
@@ -56,7 +56,7 @@ function App() {
               />
             </>
 
-            : <p className="text-center">La orden esta vacia</p>
+            : <p className="text-center font-[sans-serif]">La orden esta vacia</p>
           }
 
         </div>
