@@ -1,19 +1,19 @@
-import { useEffect, useMemo, useReducer } from "react"
+import { useEffect, useMemo } from "react"
 import Form from "./components/Form"
-import { activityReducer, initalState } from "./reducers/activityReducer"
 import ActivityList from "./components/ActivityList";
 import CalorieTracker from "./components/CalorieTracker";
+import { useActivity } from "./hooks/useActivity";
 
 function App() {
 
-  const [ state, dispatch ] = useReducer(activityReducer , initalState);
+  const { state, dispatch } = useActivity()
 
   useEffect(() => {
     localStorage.setItem('activities', JSON.stringify(state.activities))
   }, [state.activities])
 
-  const canResetApp = () => useMemo( () => state.activities.length > 0 , [state.activities] )
-  
+  const canResetApp = () => useMemo(() => state.activities.length > 0, [state.activities])
+
 
   return (
     <>
@@ -24,30 +24,22 @@ function App() {
           <button
             className="bg-blue-500 cursor-pointer hover:bg-blue-400 rounded-lg p-2 font-bold uppercase text-white disabled:opacity-10 disabled:cursor-not-allowed"
             disabled={!canResetApp()}
-            onClick={() => dispatch({type: 'restart-app'})}
+            onClick={() => dispatch({ type: 'restart-app' })}
           >Reiniciar</button>
         </div>
       </header>
       <section className="py-20 px-5">
         <div className="max-w-4xl mx-auto">
-          <Form 
-            dispatch={dispatch}
-            state={state}
-          />
+          <Form />
         </div>
       </section>
-      
+
       <section className="mx-auto max-w-4xl mb-5 bg-[#1e2939] border-[#273342] border-[1px] shadow p-10 rounded-lg drop-shadow-xl">
-        <CalorieTracker 
-          activities={state.activities}
-        />
+        <CalorieTracker />
       </section>
 
       <section className="mx-auto max-w-4xl ">
-        <ActivityList 
-          activities={state.activities}
-          dispatch={dispatch}
-        />
+        <ActivityList />
       </section>
     </>
   )
